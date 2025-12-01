@@ -9,7 +9,7 @@ from textual.binding import Binding
 from textual.reactive import reactive
 from textual.app import ComposeResult
 
-from ..formats.base import BaseFormatParser
+from formats.base import BaseFormatParser
 from .panels import StatsPanel, InfoPanel, FileListPanel
 
 
