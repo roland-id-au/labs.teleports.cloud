@@ -9,62 +9,67 @@ const SUPPORTED_FORMATS = [
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col justify-between">
       {/* Main content */}
-      <div className="flex-1 flex flex-col items-center justify-center p-6">
-        <div className="max-w-3xl w-full text-center -mt-12">
+      <div className="flex-1 flex flex-col items-center justify-center px-6 py-16">
+        <div className="max-w-3xl w-full text-center space-y-8">
           {/* Indiana Jones quote */}
-          <p className="text-3xl md:text-4xl font-bold mb-8 text-black">It belongs in a museum!</p>
-
-          {/* Hero graphic */}
-          <Image
-            src="/hero.png"
-            alt="Vintage computer with Indiana Jones hat and whip"
-            width={500}
-            height={300}
-            className="mx-auto mb-8"
-            priority
-          />
-
-          {/* Logo/Title */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-3 tracking-tight text-black">
-            Labs
-          </h1>
-
-          {/* Subtitle */}
-          <p className="text-xl md:text-2xl mb-5 text-gray-600">
-            Digital Archaeology
+          <p className="text-2xl md:text-3xl font-bold text-black italic">
+            "It belongs in a museum!"
           </p>
 
+          {/* Hero graphic */}
+          <div className="py-4">
+            <Image
+              src="/hero.png"
+              alt="Vintage computer with Indiana Jones hat and whip"
+              width={500}
+              height={300}
+              className="mx-auto"
+              priority
+            />
+          </div>
+
+          {/* Logo/Title */}
+          <div>
+            <h1 className="text-6xl md:text-8xl font-bold tracking-tight text-black mb-2">
+              Labs
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-500 font-light">
+              Digital Archaeology
+            </p>
+          </div>
+
           {/* Description */}
-          <p className="text-base md:text-lg mb-8 text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Recover and convert data from legacy file formats into modern, accessible formats.
-            Upload historic database, spreadsheet, and word processing files from the 1970s-2000s
-            for automatic conversion and data extraction.
+          <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
+            Rescue data trapped in obsolete file formats.
+            <br />
+            Convert legacy files from the 1970s–2000s into modern formats.
           </p>
 
           {/* Terminal button */}
-          <Link
-            href="/terminal"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-black text-white text-lg font-medium hover:bg-gray-800 transition-colors rounded"
-          >
-            Open Terminal
-            <span className="text-xl">↗</span>
-          </Link>
+          <div className="pt-4">
+            <Link
+              href="/terminal"
+              className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-black text-white text-lg font-medium hover:bg-gray-800 transition-all rounded-md shadow-lg hover:shadow-xl"
+            >
+              Launch Converter
+              <span className="text-xl">→</span>
+            </Link>
+          </div>
         </div>
       </div>
 
       {/* Supported Formats Footer */}
-      <div className="py-12 px-6">
+      <div className="border-t border-gray-200 py-8 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-xs font-mono text-gray-500 uppercase tracking-wider mb-3">
-            Currently Supported Formats
+          <p className="text-xs font-mono text-gray-400 uppercase tracking-widest mb-2">
+            Supported Formats
           </p>
-          <p className="text-base font-mono text-gray-600">
+          <p className="text-sm font-mono text-gray-600">
             {SUPPORTED_FORMATS.map((format, idx) => (
               <span key={idx}>
-                {format.name} {format.ext} • {format.era}
-                {idx < SUPPORTED_FORMATS.length - 1 && " | "}
+                {format.name} ({format.ext}) · {format.era}
               </span>
             ))}
           </p>
