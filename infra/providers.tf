@@ -15,6 +15,7 @@ terraform {
 
 provider "cloudflare" {
   api_token = var.cloudflare_api_token
+}
 
 provider "vercel" {
   # API token will be read from VERCEL_API_TOKEN environment variable
