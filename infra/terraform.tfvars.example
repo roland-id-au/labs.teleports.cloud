@@ -3,6 +3,11 @@
 # Render API key (get from https://dashboard.render.com/u/settings#api-keys)
 render_api_key = "rnd_..."
 
+# Cloudflare API token and Zone ID
+# Get Zone ID from Cloudflare dashboard for teleports.cloud domain
+cloudflare_api_token = "cf_..."
+cloudflare_zone_id   = "your_zone_id_here"
+
 # These are already set with defaults in variables.tf
 # Uncomment and modify if different:
 

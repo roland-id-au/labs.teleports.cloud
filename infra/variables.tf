@@ -11,9 +11,15 @@ variable "vercel_project_id" {
 }
 
 variable "github_repo" {
-  description = "GitHub repository in format: owner/repo"
+  description = "GitHub repository name (e.g., username/repo)"
   type        = string
   default     = "teleports-cloud/labs.teleports.cloud"
+}
+
+variable "vercel_root_domain" {
+  description = "The root domain for the Vercel project (e.g., labs.teleports.cloud)"
+  type        = string
+  default     = "labs.teleports.cloud"
 }
 
 variable "render_service_id" {
@@ -26,4 +32,15 @@ variable "render_api_key" {
   description = "Render API key"
   type        = string
   sensitive   = true
+}
+
+variable "cloudflare_api_token" {
+  description = "Cloudflare API Token (https://dash.cloudflare.com/profile/api-tokens)"
+  type        = string
+  sensitive   = true
+}
+
+variable "cloudflare_zone_id" {
+  description = "Cloudflare Zone ID for teleports.cloud"
+  type        = string
 }
