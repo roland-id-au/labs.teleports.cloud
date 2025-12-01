@@ -34,7 +34,15 @@
       "Bash(render login)",
       "Bash(render whoami -o json)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(render services create:*)",
+      "Bash(render workspace list:*)",
+      "Bash(render workspace current:*)",
+      "Bash(render workspace set:*)",
+      "Bash(render ea --help:*)",
+      "Bash(curl:*)",
+      "Bash(render logs:*)"
     ],
     "deny": [],
     "ask": []
