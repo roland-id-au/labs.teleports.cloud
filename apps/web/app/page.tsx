@@ -83,9 +83,9 @@ export default function LandingPage() {
     <div className="h-screen bg-white flex flex-col overflow-hidden">
       {/* Main content */}
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-8">
-        <div className="max-w-4xl w-full text-center">
+        <div className="max-w-3xl w-full text-center">
           {/* Hero graphic */}
-          <div className="mb-4">
+          <div className="mb-6">
             <Image
               src="/hero.svg"
               alt="Vintage computer with Indiana Jones hat and whip"
@@ -97,25 +97,13 @@ export default function LandingPage() {
           </div>
 
           {/* Indiana Jones quote */}
-          <p className="text-lg md:text-xl font-serif italic text-gray-700 mb-1">
+          <p className="text-xl md:text-2xl font-serif italic text-gray-700 mb-2">
             "It belongs in a museum!"
           </p>
 
           {/* Attribution */}
-          <p className="text-xs text-gray-400 uppercase tracking-widest mb-8">
+          <p className="text-xs text-gray-400 uppercase tracking-widest mb-10">
             Digital archaeology by teleports.cloud labs
-          </p>
-
-          {/* Logo/Title */}
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tight text-black mb-4">
-            Labs
-          </h1>
-
-          {/* Description */}
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-8 font-light">
-            Rescue data trapped in obsolete file formats.
-            <br className="hidden md:block" />
-            Convert legacy files from the 1970s–2000s into modern formats.
           </p>
 
           {/* Upload button */}
@@ -133,17 +121,17 @@ export default function LandingPage() {
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             className={`
-              block max-w-2xl mx-auto px-12 py-16
-              bg-white border-4 border-black rounded-lg
+              block mx-auto px-16 py-20
+              bg-white border-4 border-black rounded-xl
               cursor-pointer transition-all
-              hover:bg-gray-50 hover:border-gray-800
-              ${isDragging ? "bg-gray-100 border-gray-600 scale-105" : ""}
+              hover:bg-gray-50 hover:border-gray-700 hover:shadow-2xl
+              ${isDragging ? "bg-gray-100 border-gray-600 scale-[1.02] shadow-2xl" : "shadow-lg"}
               ${isUploading ? "opacity-50 cursor-wait" : ""}
             `}
           >
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-6">
               <svg
-                className="w-16 h-16"
+                className="w-20 h-20 text-black"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -156,14 +144,14 @@ export default function LandingPage() {
                 />
               </svg>
               <div>
-                <p className="text-2xl font-bold text-black mb-2">
-                  {isUploading ? "Uploading..." : "Upload Files"}
+                <p className="text-3xl font-bold text-black mb-3">
+                  {isUploading ? "Uploading..." : "Drop Files Here"}
                 </p>
-                <p className="text-gray-600">
-                  Drop files here or click to browse
+                <p className="text-lg text-gray-600 mb-2">
+                  or click to browse
                 </p>
-                <p className="text-sm text-gray-400 mt-2">
-                  Maximum 50MB per file
+                <p className="text-sm text-gray-400">
+                  Convert legacy files to modern formats • Max 50MB
                 </p>
               </div>
             </div>
