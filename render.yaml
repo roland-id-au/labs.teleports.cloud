@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: labs-tui
+    name: labs-teleports-cloud
     runtime: python
     plan: free
     region: oregon
