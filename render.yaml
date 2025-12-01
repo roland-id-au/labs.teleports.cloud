@@ -7,7 +7,7 @@ services:
     branch: main
     rootDir: apps/python
     buildCommand: pip install --upgrade pip && pip install -r requirements.txt
-    startCommand: python server.py
+    startCommand: python web_server.py
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
