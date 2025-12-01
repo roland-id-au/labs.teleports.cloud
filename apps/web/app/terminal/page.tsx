@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import config, { getCreateSessionUrl, getSessionFilesUrl, getUploadUrl, getTuiUrl } from "../config";
+import config, { getCreateSessionUrl, getSessionFilesUrl, getUploadUrl, getTuiUrl } from "../../config";
 
 interface FileItem {
   name: string;
