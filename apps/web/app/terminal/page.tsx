@@ -30,19 +30,37 @@ export default function TerminalPage() {
   const syncIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Check if session exists from landing page upload
+    // Check if session exists from landing page upload or create a new one
     const cookies = document.cookie.split('; ');
     const sessionCookie = cookies.find(c => c.startsWith('session_id='));
+    const pendingSessionId = localStorage.getItem('sessionIdForUpload');
 
-    if (sessionCookie) {
-      const existingSessionId = sessionCookie.split('=')[1];
-      setSessionId(existingSessionId);
-      // Start syncing files immediately
-      refreshFiles(existingSessionId);
-      startFileSync(existingSessionId);
+    let currentSession: string | null = null;
+
+    if (pendingSessionId) {
+      currentSession = pendingSessionId;
+      setSessionId(pendingSessionId);
+      refreshFiles(pendingSessionId);
+      startFileSync(pendingSessionId);
+      localStorage.removeItem('sessionIdForUpload'); // Clean up
+    } else if (sessionCookie) {
+      currentSession = sessionCookie.split('=')[1];
+      setSessionId(currentSession);
+      refreshFiles(currentSession);
+      startFileSync(currentSession);
     } else {
-      // Create new session if none exists
-      createSession();
+      createSession(); // Create new session if no existing one
+    }
+
+    // Process pending uploads from localStorage
+    const pendingUploadFilesData = localStorage.getItem('pendingUploadFiles');
+    const rawFiles = (window as any).pendingUploadFilesRaw;
+
+    if (pendingUploadFilesData && rawFiles && rawFiles.length > 0 && currentSession) {
+      // Initiate uploads with the current or pending session ID
+      initiateUploads(rawFiles, currentSession);
+      localStorage.removeItem('pendingUploadFiles');
+      (window as any).pendingUploadFilesRaw = null; // Clear raw FileList
     }
 
     // Check for inactivity every minute
@@ -106,9 +124,8 @@ export default function TerminalPage() {
     }
   }
 
-  async function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
-    const files = event.target.files;
-    if (!files || files.length === 0 || !sessionId) return;
+  async function initiateUploads(files: FileList, currentSessionId: string) {
+    if (files.length === 0 || !currentSessionId) return;
 
     setIsUploading(true);
     setUploadError("");
@@ -165,6 +182,7 @@ export default function TerminalPage() {
       }
 
       setLastActivity(new Date());
+      refreshFiles(currentSessionId); // Refresh files after uploads are done
     } catch (error) {
       setUploadError(error instanceof Error ? error.message : "Upload failed");
     } finally {
@@ -172,6 +190,17 @@ export default function TerminalPage() {
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
+    }
+  }
+
+  // Original handleFileUpload for input element
+  async function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
+    const files = event.target.files;
+    if (files && files.length > 0 && sessionId) {
+      initiateUploads(files, sessionId);
+    }
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ""; // Clear selected files
     }
   }
 

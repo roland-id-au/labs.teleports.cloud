@@ -21,7 +21,7 @@ export default function LandingPage() {
     setIsUploading(true);
 
     try {
-      // Create session first
+      // Create session
       const sessionResponse = await fetch(getCreateSessionUrl(), {
         method: "POST",
       });
@@ -31,25 +31,22 @@ export default function LandingPage() {
       // Set session cookie
       document.cookie = `session_id=${sessionId}; path=/`;
 
-      // Upload files
-      const maxSize = config.features.uploadMaxSizeMB * 1024 * 1024;
-      for (const file of Array.from(files)) {
-        if (file.size > maxSize) {
-          console.error(`File ${file.name} exceeds ${config.features.uploadMaxSizeMB}MB limit`);
-          continue;
-        }
+      // Store files in localStorage to be picked up by the terminal page
+      const fileData = Array.from(files).map(file => ({
+        name: file.name,
+        size: file.size,
+        type: file.type,
+      }));
+      localStorage.setItem('pendingUploadFiles', JSON.stringify(fileData));
+      localStorage.setItem('sessionIdForUpload', sessionId); // Also store sessionId for terminal page
 
-        const formData = new FormData();
-        formData.append("file", file);
+      // Store the actual File objects in a way that terminal can access (e.g., using a global object or more advanced state management)
+      // For a quick fix, we can attach the FileList directly to the window object or use a more robust state management.
+      // Let's attach to window for simplicity for now.
+      (window as any).pendingUploadFilesRaw = files;
 
-        await fetch(getUploadUrl(), {
-          method: "POST",
-          body: formData,
-          credentials: "include",
-        });
-      }
 
-      // Navigate to terminal
+      // Navigate to terminal immediately
       router.push("/terminal");
     } catch (error) {
       console.error("Upload failed:", error);
