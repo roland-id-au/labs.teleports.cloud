@@ -7,13 +7,13 @@ variable "vercel_team_id" {
 variable "vercel_project_id" {
   description = "Existing Vercel project ID"
   type        = string
-  default     = "prj_EL6lrTT6jbwB92nw35dAjkCD8TrJ"
+  default     = "prj_A9oY7UnBUFrE41MOboCq4y1ryH30"
 }
 
 variable "github_repo" {
   description = "GitHub repository name (e.g., username/repo)"
   type        = string
-  default     = "teleports-cloud/labs.teleports.cloud"
+  default     = "roland-id-au/labs.teleports.cloud"
 }
 
 variable "vercel_root_domain" {
