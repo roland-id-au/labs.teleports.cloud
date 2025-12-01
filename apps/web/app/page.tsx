@@ -41,7 +41,7 @@ export default function LandingPage() {
 
           {/* Terminal button */}
           <Link
-            href="/formats"
+            href="https://labs-teleports-cloud.onrender.com"
             className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-black text-white text-lg font-medium hover:bg-gray-800 transition-colors"
           >
             Open Terminal
