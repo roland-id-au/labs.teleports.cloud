@@ -7,6 +7,29 @@ const SUPPORTED_FORMATS = [
   { name: "SmartWare II", ext: ".ws", era: "1980s-1990s", icon: "💾" },
 ];
 
+const FloppyDiskGraphic = () => (
+  <svg viewBox="0 0 200 240" className="w-48 h-auto mx-auto mb-6" fill="none" stroke="black" strokeWidth="2">
+    {/* Floppy disk body */}
+    <rect x="40" y="80" width="120" height="140" fill="white" stroke="black" strokeWidth="2"/>
+    {/* Top notch */}
+    <rect x="40" y="80" width="120" height="30" fill="black"/>
+    {/* Label area */}
+    <rect x="55" y="130" width="90" height="50" fill="white" stroke="black" strokeWidth="1.5"/>
+    {/* Metal shutter */}
+    <rect x="60" y="195" width="80" height="15" fill="black"/>
+    {/* Lines on label */}
+    <line x1="65" y1="145" x2="135" y2="145" stroke="black" strokeWidth="1" opacity="0.3"/>
+    <line x1="65" y1="155" x2="135" y2="155" stroke="black" strokeWidth="1" opacity="0.3"/>
+    <line x1="65" y1="165" x2="120" y2="165" stroke="black" strokeWidth="1" opacity="0.3"/>
+    {/* Quote above - hand-drawn style */}
+    <text x="100" y="40" fontSize="16" fontFamily="serif" fontStyle="italic" textAnchor="middle" fill="black">
+      "It belongs in a museum!"
+    </text>
+    {/* Underline */}
+    <path d="M 30 50 Q 100 55 170 50" stroke="black" strokeWidth="1" fill="none"/>
+  </svg>
+);
+
 export default function LandingPage() {
   const [showCursor, setShowCursor] = useState(true);
 
@@ -22,14 +45,17 @@ export default function LandingPage() {
       {/* Main content */}
       <div className="flex-1 flex flex-col items-center justify-center p-6">
         <div className="max-w-3xl w-full text-center">
+          {/* Indiana Jones style graphic */}
+          <FloppyDiskGraphic />
+
           {/* Logo/Title */}
           <h1 className="text-5xl md:text-7xl font-bold mb-4 tracking-tight">
-            labs.teleports.cloud
+            Labs
           </h1>
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl mb-6 opacity-60">
-            Historic File Format Recovery
+            Digital Archaeology
           </p>
 
           {/* Description */}

@@ -5,8 +5,8 @@ import "./globals.css";
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Historic File Format Converter | labs.teleports.cloud",
-  description: "Convert legacy database, spreadsheet, and word processing files from the 1970s-2000s into modern formats. Supports SmartWare, dBase, Lotus 1-2-3, WordPerfect, and more.",
+  title: "Labs | Digital Archaeology",
+  description: "Recover and convert data from legacy file formats into modern, accessible formats. Historic database, spreadsheet, and word processing files from the 1970s-2000s.",
 };
 
 export default function RootLayout({
