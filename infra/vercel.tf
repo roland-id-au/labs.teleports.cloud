@@ -8,12 +8,10 @@ resource "vercel_project" "frontend" {
     repo = var.github_repo
   }
 
-
-
   build_command    = "pnpm build"
   install_command  = "pnpm install"
   output_directory = ".next"
-  root_directory   = "apps/web"
+  root_directory   = "apps/web" # Root directory for the Vercel project (frontend)
 }
 
 # Project domain configuration
